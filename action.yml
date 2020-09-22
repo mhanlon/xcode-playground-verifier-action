@@ -16,5 +16,5 @@ runs:
   using: "composite"
   steps:
     - id: xcode-playground-runner
-    run: sh $GITHUB_ACTION_PATH/verifyPlaygrounds.sh
-    shell: bash
+      run: sh $GITHUB_ACTION_PATH/verifyPlaygrounds.sh
+      shell: bash
