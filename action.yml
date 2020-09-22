@@ -24,9 +24,6 @@ runs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
       # Runs the script to cd into each playground, build it (and its subpages) and run it
       - name: Build and run Xcode Playgrounds
         run: sh $GITHUB_ACTION_PATH/verifyPlaygrounds.sh
