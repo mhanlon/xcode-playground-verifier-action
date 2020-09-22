@@ -12,15 +12,8 @@ on:
   pull_request:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: macos-latest
-
-    runs:
-      using: "composite"
-      steps:
-        - run: sh $GITHUB_ACTION_PATH/verifyPlaygrounds.sh
-        - shell: bash
+runs:
+  using: "composite"
+  steps:
+    - run: sh $GITHUB_ACTION_PATH/verifyPlaygrounds.sh
+    - shell: bash
