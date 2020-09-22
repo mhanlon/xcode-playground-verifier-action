@@ -24,7 +24,6 @@ runs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Runs the script to cd into each playground, build it (and its subpages) and run it
-      - name: Build and run Xcode Playgrounds
-        run: sh $GITHUB_ACTION_PATH/verifyPlaygrounds.sh
-        shell: bash
+      - id: build-and-run-playgrounds
+      run: sh $GITHUB_ACTION_PATH/verifyPlaygrounds.sh
+      shell: bash
