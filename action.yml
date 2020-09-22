@@ -22,6 +22,5 @@ jobs:
     runs:
       using: "composite"
       steps:
-        - id: build-and-run-playgrounds
-        run: sh $GITHUB_ACTION_PATH/verifyPlaygrounds.sh
+        - run: sh $GITHUB_ACTION_PATH/verifyPlaygrounds.sh
         shell: bash
