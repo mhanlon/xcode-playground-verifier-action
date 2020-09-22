@@ -1,6 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
 name: CI - Playground runner
+description: 'Build and run all Xcode Playgrounds in a repository'
+author: 'Matt Hanlon <@mhanlon>'
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -17,6 +19,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: macos-latest
 
+runs:
+  using: "composite"
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -25,3 +30,4 @@ jobs:
       # Runs the script to cd into each playground, build it (and its subpages) and run it
       - name: Build and run Xcode Playgrounds
         run: sh ${{ github.action_path }}/verifyPlaygrounds.sh
+        shell: bash
