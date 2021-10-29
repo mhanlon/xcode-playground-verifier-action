@@ -47,46 +47,46 @@ build_dir=${home}/build
 
 # Copy our source files into our build directory
 current_working_playground=''
-for file in *.playground; do 
-  cd "$file";
-  printf " ${CYAN}Working in $file${PLAIN}\n"
-  current_working_playground=$PWD
-  if [ -e Contents.swift ]; then
-    copy_source_files "$current_working_playground"
-    # Jump to the build directory to build this out
-    cd $build_dir
-    build_and_run_files;
-    # Clean up the built resources
-    rm -rf ./Sources
-    rm main
-    rm main.swift
-  else
-    # Now we go looking in Pages directories...
-    if [ -e Pages ]; then
-      for page in Pages/*.xcplaygroundpage; do
-        cd "${page}";
-        current_working_page=$PWD
-        printf " ${CYAN}Working in $page${PLAIN}\n"
-        if [ -e Contents.swift ]; then
-          copy_source_files "$current_working_playground"
-          # Jump to the build directory to build this out
-          cd $build_dir
-          build_and_run_files;
-          # Clean up the built resources
-          rm -rf ./Sources
-          rm main
-          rm main.swift
-          # Get back to our current working page and then back out two directories
-          cd "${current_working_page}/../../"
-        fi
-      done;
-      # Get back to our current working playground
-      cd ../
-    fi
-  fi
-  # Get back to our current working playground and then back out a directory
-  cd "${current_working_playground}/../"
+for folder in *Unit*; do 
+	cd $folder
+	for file in *.playground; do 
+	  cd "$file";
+	  printf " ${CYAN}Working in $file${PLAIN}\n"
+	  current_working_playground=$PWD
+	  if [ -e Contents.swift ]; then
+	    copy_source_files "$current_working_playground"
+	    # Jump to the build directory to build this out
+	    cd $build_dir
+	    build_and_run_files;
+	    # Clean up the built resources
+	    rm -rf ./Sources
+	    rm main
+	    rm main.swift
+	  else
+	    # Now we go looking in Pages directories...
+	    if [ -e Pages ]; then
+	      for page in Pages/*.xcplaygroundpage; do
+	        cd "${page}";
+	        current_working_page=$PWD
+	        printf " ${CYAN}Working in $page${PLAIN}\n"
+	        if [ -e Contents.swift ]; then
+	          copy_source_files "$current_working_playground"
+	          # Jump to the build directory to build this out
+	          cd $build_dir
+	          build_and_run_files;
+	          # Clean up the built resources
+	          rm -rf ./Sources
+	          rm main
+	          rm main.swift
+	          # Get back to our current working page and then back out two directories
+	          cd "${current_working_page}/../../"
+	        fi
+	      done;
+	      # Get back to our current working playground
+	      cd ../
+	    fi
+	  fi
+	done;
+	cd ../
 done;
-
 exit $exit;
-
